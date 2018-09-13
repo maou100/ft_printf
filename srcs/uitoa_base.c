@@ -6,7 +6,7 @@
 /*   By: feedme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 15:48:08 by feedme            #+#    #+#             */
-/*   Updated: 2018/09/12 15:04:18 by feedme           ###   ########.fr       */
+/*   Updated: 2018/09/13 15:00:08 by feedme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*uitoa_base(uintmax_t nb, int base, t_params par)
 
 	table = (par.type == 'X') ? "0123456789ABCDEF" : "0123456789abcdef";
 	count = ft_spacecount_ub(nb, base);
-	if (nb == 0)
+	if (nb == 0 && par.type != 'p')
 	{
 		if (!par.prec)
 			return (ft_strnew(0));
