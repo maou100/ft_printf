@@ -6,7 +6,7 @@
 /*   By: feedme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 11:59:44 by feedme            #+#    #+#             */
-/*   Updated: 2018/09/05 03:12:01 by feedme           ###   ########.fr       */
+/*   Updated: 2018/09/13 14:49:10 by feedme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char		*octal_hash(char *str, t_params par, int og_len)
 	int		i;
 
 	i = 0;
+	if (str[0] == '0')
+		return (str);
 	if (par.width > og_len)
 	{
 		if (par.zero)
