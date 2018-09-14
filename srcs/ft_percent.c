@@ -6,7 +6,7 @@
 /*   By: feedme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 20:35:26 by feedme            #+#    #+#             */
-/*   Updated: 2018/09/13 14:27:56 by feedme           ###   ########.fr       */
+/*   Updated: 2018/09/13 20:12:54 by feedme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,38 +33,54 @@ void		ft_init_fcts(t_fcts *fcts)
 
 char		*ft_get_str(va_list ap, t_params par)
 {
-
-	// au cas ou ma synthaxe de fct pters marche pas: char *(*p[123]) (va_list ap, t_params par);
-	char	*tmp;
-	t_fcts	tab[121]; // 'x' == 120 aka the last index of the array/tab
+	char		*tmp;
+	t_fcts		tab[121];
 
 	ft_init_fcts(tab);
-	tmp = (*tab[(int)par.type])(ap, par); // par.type is a char: par.type = format[i]; <---where the type is (d, i, s, ...)
+	tmp = (*tab[(int)par.type])(ap, par);
 	return (tmp);
 }
 
-char	*ft_perc(char *str, int *i, const char *s, va_list ap)
+char		*ft_perc(char *str, int *i, const char *s, va_list ap)
 {
 	char		*tmp;
 	char		*tmp2;
 	t_params	par;
 
-	IF_NULL_X((s[++(*i)]), -1)
+	IF_NULL_X((s[++(*i)]), -1);
 	ft_init_params(&par);
 	while (s[*i])
 	{
 		if (!IS_TYPE(s[*i]))
-			ft_get_params(s, i, &par); //exits if non valid params, changer si il faut des espaces partout
+			ft_get_params(s, i, &par);
 		else
 		{
 			par.type = s[*i];
 			(*i)++;
-			break;
+			break ;
 		}
 	}
-	IF_NULL_R((tmp = ft_get_str(ap, par)), NULL)
-	IF_NULL_R((tmp2 = ft_strjoin(str, tmp)), NULL)
+	IF_NULL_R((tmp = ft_get_str(ap, par)), NULL);
+	IF_NULL_R((tmp2 = ft_strjoin(str, tmp)), NULL);
 	free(str);
-//	free(tmp);
 	return (tmp2);
+}
+
+void		width_hlper(char *str, char *tmp, t_params par, int j)
+{
+	int			i;
+
+	i = -1;
+	if (par.prec != -1)
+	{
+		while (++i < par.width - ft_strlen(str))
+			tmp[i] = ' ';
+	}
+	else
+	{
+		while (++i < par.width - ft_strlen(str))
+			tmp[i] = par.zero ? '0' : ' ';
+	}
+	while (str[++j])
+		tmp[i + j] = str[j];
 }

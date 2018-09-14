@@ -6,7 +6,7 @@
 /*   By: feedme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 21:00:09 by feedme            #+#    #+#             */
-/*   Updated: 2018/09/02 21:05:43 by feedme           ###   ########.fr       */
+/*   Updated: 2018/09/13 19:20:20 by feedme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # define FELIX char *str; unsigned int i = ft_spacecount(n) - 1;
 # define FELIX1 char **array; unsigned int i = 0; unsigned int j = 0;
 
-# define IF_NULL_R(x, y) if (!x) return (y);
-# define IF_NEG_ONE_R(x, y) if (x == -1) return (y);
-# define IF_NULL_X(x, y) if (!x) exit(y);
-# define IF_NEG_ONE_X(x, y) if (x == -1) exit(y);
+# define IF_NULL_R(x, y) if (!x) return (y)
+# define IF_NEG_ONE_R(x, y) if (x == -1) return (y)
+# define IF_NULL_X(x, y) if (!x) exit(y)
+# define IF_NEG_ONE_X(x, y) if (x == -1) exit(y)
 # define ISDIGIT(x) (x >= '0' && x <= '9')
 
 # include <string.h>
@@ -36,7 +36,6 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-char				*ft_str_left_ext(char *str, int extension);
 char				*ft_strndup(const char *src, int n);
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);

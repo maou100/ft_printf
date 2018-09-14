@@ -6,15 +6,15 @@
 /*   By: feedme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 15:48:08 by feedme            #+#    #+#             */
-/*   Updated: 2018/09/13 15:00:08 by feedme           ###   ########.fr       */
+/*   Updated: 2018/09/13 19:44:25 by feedme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libftprintf.h"
 
-int	ft_spacecount_ub(uintmax_t n, int base)
+int		ft_spacecount_ub(uintmax_t n, int base)
 {
-	int	count;
+	int		count;
 
 	count = 1;
 	while (n >= (uintmax_t)base)
@@ -29,7 +29,7 @@ char	*ptr_add_x(char *str)
 {
 	char	*tmp;
 
-	IF_NULL_X((tmp = ft_str_left_ext(str, 2)), -1)
+	IF_NULL_X((tmp = ft_str_left_ext(str, 2)), -1);
 	free(str);
 	tmp[0] = '0';
 	tmp[1] = 'x';
@@ -48,11 +48,11 @@ char	*uitoa_base(uintmax_t nb, int base, t_params par)
 	{
 		if (!par.prec)
 			return (ft_strnew(0));
-		IF_NULL_X((str = ft_strnew(1)), -1)
+		IF_NULL_X((str = ft_strnew(1)), -1);
 		str[0] = '0';
 		return (str);
 	}
-	IF_NULL_X((str = ft_strnew(count)), -1)
+	IF_NULL_X((str = ft_strnew(count)), -1);
 	while (count > 0)
 	{
 		str[count - 1] = table[nb % base];

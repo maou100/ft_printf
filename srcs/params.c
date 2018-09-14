@@ -6,13 +6,11 @@
 /*   By: feedme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 23:01:37 by feedme            #+#    #+#             */
-/*   Updated: 2018/09/12 16:53:10 by feedme           ###   ########.fr       */
+/*   Updated: 2018/09/13 19:24:22 by feedme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libftprintf.h"
-
-//faire gaffe a si il faut pouvoir mettre les flags ds nimporte quel ordre
 
 void		ft_flags(t_params *par, const char *s, int *i)
 {
@@ -42,8 +40,8 @@ void		ft_width(t_params *par, const char *s, int *i)
 	i0 = *i;
 	while (ISDIGIT(s[*i]))
 		(*i)++;
-	IF_NULL_X((tmp = ft_strsub(s, i0, (*i - i0))), -1)
-	par->width = ft_atoi(tmp); // si la valeur est + que max int srx sa casse les couilles
+	IF_NULL_X((tmp = ft_strsub(s, i0, (*i - i0))), -1);
+	par->width = ft_atoi(tmp);
 	free(tmp);
 	if (s[*i] != '.' && !ISMODIF(s[*i]) && !IS_TYPE(s[*i]))
 		exit(-1);
@@ -65,8 +63,8 @@ void		ft_prec(t_params *par, const char *s, int *i)
 	i0 = *i;
 	while (ISDIGIT(s[*i]))
 		(*i)++;
-	IF_NULL_X((tmp = ft_strsub(s, i0, (*i - i0))), -1)
-	par->prec = ft_atoi(tmp); // la meme
+	IF_NULL_X((tmp = ft_strsub(s, i0, (*i - i0))), -1);
+	par->prec = ft_atoi(tmp);
 	free(tmp);
 	if (!ISMODIF(s[*i]) && !IS_TYPE(s[*i]))
 		exit(-1);
@@ -89,7 +87,7 @@ void		ft_modif(t_params *par, const char *s, int *i)
 		exit(-1);
 }
 
-void		ft_get_params(const char *s, int *i, t_params *par) // faire gaffe au users attardes
+void		ft_get_params(const char *s, int *i, t_params *par)
 {
 	if (!IS_ANYFLAG(s[*i]))
 		exit(-1);

@@ -6,13 +6,58 @@
 /*   By: feedme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:17:05 by feedme            #+#    #+#             */
-/*   Updated: 2018/09/13 12:25:15 by feedme           ###   ########.fr       */
+/*   Updated: 2018/09/13 19:43:38 by feedme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libftprintf.h"
 
-void	ft_pf_putstr(char *str)
+char		*ft_str_left_ext(char *str, int extension)
+{
+	char	*tmp;
+	int		i;
+	int		len;
+
+	len = ft_strlen(str) + extension;
+	i = 0;
+	IF_NULL_R((tmp = ft_strnew(len)), NULL);
+	ft_bzero(tmp, len);
+	while ((extension + i) < len)
+	{
+		tmp[extension + i] = str[i];
+		i++;
+	}
+	return (tmp);
+}
+
+char		*enuf_space(char *str, t_params par)
+{
+	int		i;
+
+	i = 0;
+	if (par.min)
+	{
+		str = shift_right(str, 2);
+		str[0] = '0';
+		str[1] = par.type == 'X' ? 'X' : 'x';
+		return (str);
+	}
+	else
+	{
+		if (par.zero)
+		{
+			str[1] = par.type == 'X' ? 'X' : 'x';
+			return (str);
+		}
+		while (str[i] == ' ')
+			i++;
+		str[i - 2] = '0';
+		str[i - 1] = par.type == 'X' ? 'X' : 'x';
+		return (str);
+	}
+}
+
+void		ft_pf_putstr(char *str)
 {
 	int		i;
 	char	zero;
@@ -33,7 +78,7 @@ void	ft_pf_putstr(char *str)
 	}
 }
 
-int		get_base(char c)
+int			get_base(char c)
 {
 	if (c == 'o' || c == 'O')
 		return (8);
@@ -44,7 +89,7 @@ int		get_base(char c)
 	return (0);
 }
 
-void	ft_init_params(t_params *par)
+void		ft_init_params(t_params *par)
 {
 	par->hash = 0;
 	par->zero = 0;

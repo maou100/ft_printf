@@ -6,7 +6,7 @@
 /*   By: feedme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 16:53:09 by feedme            #+#    #+#             */
-/*   Updated: 2018/09/13 14:08:48 by feedme           ###   ########.fr       */
+/*   Updated: 2018/09/13 20:13:09 by feedme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,19 @@ typedef struct	s_params
 }				t_params;
 
 typedef char*	(*t_fcts)(va_list ap, t_params par);
-
-//typedef struct	s_functions
-//{
-//	char		type;
-//	char		*fct(va_list ap);
-//}				t_fcts;
-
 int				g_c_bool;
 
+void			width_hlper(char *str, char *tmp, t_params par, int j);
+char			*int_prec(char *str, t_params par, char booly);
+char			*int_width(char *str, t_params par);
+char			*ft_left_ext(char *str, int extension);
+char			*int_add_sign(char *str, t_params par);
+uintmax_t		modif_uints(va_list ap, t_params par);
+intmax_t		modif_ints(va_list ap, t_params par);
+char			*ft_fix_pbs(char *str, t_params par, int booly);
+char			*get_ints(va_list ap, t_params par);
+char			*enuf_space(char *str, t_params par);
+char			*ft_str_left_ext(char *str, int extension);
 char			*ft_imaxtoa(intmax_t nb);
 char			*shift_right(char *str, int dist);
 void			ft_pf_putstr(char *str);
