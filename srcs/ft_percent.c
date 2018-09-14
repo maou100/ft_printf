@@ -6,7 +6,7 @@
 /*   By: feedme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 20:35:26 by feedme            #+#    #+#             */
-/*   Updated: 2018/09/13 20:12:54 by feedme           ###   ########.fr       */
+/*   Updated: 2018/09/14 10:04:23 by feedme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ char		*ft_get_str(va_list ap, t_params par)
 	t_fcts		tab[121];
 
 	ft_init_fcts(tab);
+	if (par.type == 'D')
+	{
+		par.type = 'd';
+		par.modif = 'l';
+	}
 	tmp = (*tab[(int)par.type])(ap, par);
 	return (tmp);
 }
